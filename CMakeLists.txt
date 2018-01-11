@@ -303,7 +303,11 @@ if(WITH_TESTS)
 	add_subdirectory(tests)
 endif()
 
-add_library(iio ${LIBIIO_CFILES} ${LIBIIO_HEADERS} ${LIBIIO_EXTRA_HEADERS})
+set(LIBIIO_ORIGINAL_FILENAME libiio.dll)
+set(LIBIIO_RC ${CMAKE_CURRENT_BINARY_DIR}/properties.rc)
+configure_file(properties.rc.cmakein ${LIBIIO_RC} @ONLY)
+
+add_library(iio ${LIBIIO_CFILES} ${LIBIIO_HEADERS} ${LIBIIO_EXTRA_HEADERS} ${LIBIIO_RC})
 set_target_properties(iio PROPERTIES
 	VERSION ${VERSION}
 	SOVERSION ${LIBIIO_VERSION_MAJOR}
