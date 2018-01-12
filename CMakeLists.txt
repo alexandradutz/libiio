@@ -303,9 +303,12 @@ if(WITH_TESTS)
 	add_subdirectory(tests)
 endif()
 
-set(LIBIIO_ORIGINAL_FILENAME libiio.dll)
-set(LIBIIO_RC ${CMAKE_CURRENT_BINARY_DIR}/properties.rc)
-configure_file(properties.rc.cmakein ${LIBIIO_RC} @ONLY)
+if (WIN32)
+	set(LIBIIO_ORIGINAL_FILENAME libiio.dll)
+	string(TIMESTAMP BUILD_YEAR "%Y")
+	set(LIBIIO_RC ${CMAKE_CURRENT_BINARY_DIR}/properties.rc)
+	configure_file(properties.rc.cmakein ${LIBIIO_RC} @ONLY)
+endif()
 
 add_library(iio ${LIBIIO_CFILES} ${LIBIIO_HEADERS} ${LIBIIO_EXTRA_HEADERS} ${LIBIIO_RC})
 set_target_properties(iio PROPERTIES
