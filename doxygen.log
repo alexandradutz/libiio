@@ -1,2 +1,0 @@
-warning: tag INPUT: input source `@CMAKE_SOURCE_DIR@' does not exist
-warning: source @CMAKE_SOURCE_DIR@ is not a readable file or directory... skipping.
